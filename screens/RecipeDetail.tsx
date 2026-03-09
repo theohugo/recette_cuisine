@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { View, Text, Button, Alert, StyleSheet, Image, ScrollView } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../types/navigation';
 import recipes from '../data/recipes';
 import recipeSteps from '../data/recipeSteps';
+import { FavoriteContext } from '../context/FavoriteContext';
 
 type Props = {
   route: RouteProp<RootStackParamList, 'RecipeDetail'>;
@@ -11,7 +12,10 @@ type Props = {
 
 export default function RecipeDetail({ route }: Props) {
   const { recipeId } = route.params;
-  const [isFavorite, setIsFavorite] = useState(false);
+
+  // Utiliser le contexte pour gérer les favoris
+  const { favorites, toggleFavorite } = useContext(FavoriteContext);
+  const isFavorite = favorites.includes(recipeId);
 
   // Récupérer la recette correspondante
   const recipe = recipes.find(r => r.id === recipeId);
@@ -29,19 +33,13 @@ export default function RecipeDetail({ route }: Props) {
     );
   }
 
-  const handleFavorite = () => {
-    setIsFavorite(!isFavorite);
-    Alert.alert(
-      'Favori',
-      !isFavorite ? 'Recette ajoutée aux favoris !' : 'Recette retirée des favoris'
-    );
-  };
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Image source={{ uri: recipe.image }} style={styles.image} />
 
-      <Text style={styles.title}>{recipe.titre}</Text>
+      <Text style={styles.title}>
+        {recipe.titre} {isFavorite ? '⭐' : '☆'}
+      </Text>
       <Text style={styles.info}>
         Temps : {recipe.temps_preparation} min | Difficulté : {recipe.difficulte}
       </Text>
@@ -62,7 +60,7 @@ export default function RecipeDetail({ route }: Props) {
       <View style={styles.buttonContainer}>
         <Button
           title={isFavorite ? 'Retirer des favoris' : 'Mettre en favori'}
-          onPress={handleFavorite}
+          onPress={() => toggleFavorite(recipeId)}
         />
       </View>
     </ScrollView>
