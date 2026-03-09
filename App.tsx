@@ -1,5 +1,11 @@
+import React from 'react';
 import AppNavigator from './navigation';
+import { FavoriteProvider } from './context/FavoriteContext';
 
 export default function App() {
-  return <AppNavigator />;
+  return (
+    <FavoriteProvider>
+      <AppNavigator />
+    </FavoriteProvider>
+  );
 }
