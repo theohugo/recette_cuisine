@@ -6,3 +6,12 @@ export interface Recette {
   image: string;
   ingredients: string[];
 }
+
+export interface RecipeStep {
+  id: string;
+  recipeId: string;
+  order: number;
+  title: string;
+  stepTime: number;
+  description: string;
+}
