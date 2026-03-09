@@ -15,3 +15,8 @@ export interface RecipeStep {
   stepTime: number;
   description: string;
 }
+
+export type RootStackParamList = {
+  Home: undefined;
+  RecipeDetail: { recette: Recette };
+};

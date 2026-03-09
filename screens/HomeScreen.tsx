@@ -1,23 +1,40 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import {
   FlatList,
   Text,
   View,
   StyleSheet,
   ListRenderItem,
+  Alert,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RecipeCard, SearchBar } from '../components';
 import { colors, layoutStyles, spacing, typography } from '../theme';
 import recipes from '../data/recipes';
-import type { Recette } from '../types';
+import type { Recette, RootStackParamList } from '../types';
 
-interface HomeScreenProps {
-  onRecipePress?: (recette: Recette) => void;
-}
+type HomeNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
 
-export default function HomeScreen({ onRecipePress }: HomeScreenProps) {
+export default function HomeScreen() {
+  const navigation = useNavigation<HomeNavigationProp>();
   const [search, setSearch] = useState('');
+  const [favorites, setFavorites] = useState<Set<string>>(new Set());
+
+  const toggleFavorite = useCallback((recetteId: string) => {
+    setFavorites((prev) => {
+      const next = new Set(prev);
+      if (next.has(recetteId)) {
+        next.delete(recetteId);
+        Alert.alert('Favori retiré', 'La recette a été retirée de vos favoris.');
+      } else {
+        next.add(recetteId);
+        Alert.alert('Favori ajouté', 'La recette a été ajoutée à vos favoris !');
+      }
+      return next;
+    });
+  }, []);
 
   const filteredRecipes = useMemo(() => {
     if (!search.trim()) return recipes;
@@ -32,7 +49,9 @@ export default function HomeScreen({ onRecipePress }: HomeScreenProps) {
   const renderItem: ListRenderItem<Recette> = ({ item }) => (
     <RecipeCard
       recette={item}
-      onPress={() => onRecipePress?.(item)}
+      onPress={() => navigation.navigate('RecipeDetail', { recette: item })}
+      isFavorite={favorites.has(item.id)}
+      onFavoritePress={() => toggleFavorite(item.id)}
     />
   );
 
