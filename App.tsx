@@ -1,5 +1,13 @@
-import AppNavigator from './navigation';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { HomeScreen } from './screens';
 
 export default function App() {
-  return <AppNavigator />;
+  return (
+    <SafeAreaProvider>
+      <StatusBar style="dark" />
+      <HomeScreen onRecipePress={() => {}} />
+    </SafeAreaProvider>
+  );
 }
+
