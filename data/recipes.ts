@@ -6,7 +6,7 @@ const recipes: Recette[] = [
     titre: 'Spaghetti bolognaise',
     temps_preparation: 35,
     difficulte: 'Facile',
-    image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?auto=format&fit=crop&w=900&q=80',
+    image: 'https://api.toutlevin.com/images/7ca8fec142bb2d1a96157489d6695075003840002366.jpg?width=1920&quality=75',
     ingredients: ['spaghetti', 'boeuf hache', 'tomate concassee', 'oignon', 'ail', 'huile d olive'],
   },
   {
@@ -14,7 +14,7 @@ const recipes: Recette[] = [
     titre: 'Poulet curry coco',
     temps_preparation: 40,
     difficulte: 'Moyenne',
-    image: 'https://images.unsplash.com/photo-1604908177073-9f5f8478f8a3?auto=format&fit=crop&w=900&q=80',
+    image: 'https://www.etal-des-epices.com/wp-content/uploads/2023/11/poulet-curry-coco.jpg',
     ingredients: ['blanc de poulet', 'lait de coco', 'curry', 'oignon', 'gingembre', 'riz basmati'],
   },
   {
@@ -22,7 +22,7 @@ const recipes: Recette[] = [
     titre: 'Quiche lorraine',
     temps_preparation: 50,
     difficulte: 'Moyenne',
-    image: 'https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=900&q=80',
+    image: 'https://recettes.precuttech.com/wp-content/uploads/2024/08/Quiche-Lorraine-allegee.jpg',
     ingredients: ['pate brisee', 'oeufs', 'creme fraiche', 'lardons', 'gruyere', 'poivre'],
   },
   {
@@ -30,7 +30,7 @@ const recipes: Recette[] = [
     titre: 'Salade cesar',
     temps_preparation: 20,
     difficulte: 'Facile',
-    image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.ctfassets.net/1p5r6txvlxu4/5BoMaZHe0FFFqrZjUEhRih/ea104cc4f7442fa88e049e7cc0b48711/AdobeStock_157570276-2.jpeg?w=768&h=541&fm=webp&q=100&fit=fill&f=center',
     ingredients: ['salade romaine', 'filet de poulet', 'parmesan', 'croutons', 'sauce cesar'],
   },
   {
@@ -38,7 +38,7 @@ const recipes: Recette[] = [
     titre: 'Ratatouille maison',
     temps_preparation: 55,
     difficulte: 'Difficile',
-    image: 'https://images.unsplash.com/photo-1598866594230-a7c12756260f?auto=format&fit=crop&w=900&q=80',
+    image: 'https://resize.elle.fr/original/var/plain_site/storage/images/elle-a-table/les-dossiers-de-la-redaction/news-de-la-redaction/ratatouille-maison-3939657/95115788-12-fre-FR/Saveurs-de-vacances-Comment-faire-une-ratatouille-maison-que-vous-jalousera-votre-grand-mere.jpg',
     ingredients: ['aubergine', 'courgette', 'poivron', 'tomate', 'oignon', 'ail', 'thym'],
   },
 ];
